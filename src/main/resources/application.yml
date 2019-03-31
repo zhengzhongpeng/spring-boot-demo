@@ -1,0 +1,27 @@
+
+
+#hello: Hello Spring Boot !
+student:
+    age: 20
+    name: 哈哈
+hello: "一个菜鸟学生，姓名:${student.name},年龄:${student.age}。哈哈哈哈"
+
+
+server:
+  port: 8087
+  servlet:
+    context-path: /haha
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/mydemo?characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: mapper/*.xml
+  type-aliases-package: com.example.springbootdemo.dao.mapper
