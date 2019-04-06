@@ -3,8 +3,8 @@
 #hello: Hello Spring Boot !
 student:
     age: 20
-    name: ¹ş¹ş
-hello: "Ò»¸ö²ËÄñÑ§Éú£¬ĞÕÃû:${student.name},ÄêÁä:${student.age}¡£¹ş¹ş¹ş¹ş"
+    name: ï¿½ï¿½ï¿½ï¿½
+hello: "Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½:${student.name},ï¿½ï¿½ï¿½ï¿½:${student.age}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
 
 
 server:
@@ -22,6 +22,22 @@ spring:
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
+  mail: #JavaMailSender é‚®ä»¶å‘é€çš„é…ç½®
+    host: smtp.163.com
+    username: zhengzhongpeng@163.com
+    from: zhengzhongpeng@163.com
+    password: Zheng20
+    properties:
+      mail.smtp:
+        auth: true
+        starttls:
+          enable: true
+          required: false
+    port: 25
 mybatis:
   mapper-locations: mapper/*.xml
   type-aliases-package: com.example.springbootdemo.dao.mapper
+
+
+
+
