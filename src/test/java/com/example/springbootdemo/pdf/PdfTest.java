@@ -1,7 +1,8 @@
 package com.example.springbootdemo.pdf;
 
 import com.example.springbootdemo.Services.user.IUserService;
-import com.example.springbootdemo.biz.pdf.PdfUtil;
+import com.example.springbootdemo.common.PdfUtil;
+import com.example.springbootdemo.common.FreemarkerUtils;
 import com.example.springbootdemo.dao.pojo.UserDO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,8 +36,8 @@ public class PdfTest {
         List<UserDO> userDOList = userService.queryAll();
         Map<String,Object> model = new ConcurrentHashMap<>();
         model.put("userList",userDOList);
-        String htmlStr = PdfUtil.freeMarkerRender(model,"testPdfUserTableTemplate.ftl");
-        byte[] pdfByte = PdfUtil.createPdf(htmlStr);
+        String htmlStr = FreemarkerUtils.freeMarkerRender(model,"testPdfUserTableTemplate.ftl");
+        byte[] pdfByte = PdfUtil.createPDF(htmlStr);
         if (pdfByte != null && pdfByte.length > 0){
             BufferedOutputStream bos = null;
             FileOutputStream fos = null;

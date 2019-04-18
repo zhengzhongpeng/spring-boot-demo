@@ -1,14 +1,11 @@
 package com.example.springbootdemo.biz.mail;
 
-import freemarker.template.Template;
+import com.example.springbootdemo.common.FreemarkerUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
-
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.Map;
@@ -27,11 +24,6 @@ public class MailEngine {
      */
     @Value("${spring.mail.from}")
     private String from ;
-
-    @Autowired
-    private FreeMarkerConfigurer configurer;
-
-
 
     public void sendMailFreeMarker(MailInfo mailInfo) throws Exception{
         MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -57,7 +49,7 @@ public class MailEngine {
      * @param template
      * @param modelParam
      */
-    public void sendMailFreeMarker(MailInfo mailInfo, String template, Map<Object,Object> modelParam)throws Exception{
+    public void sendMailFreeMarker(MailInfo mailInfo, String template, Map<String,Object> modelParam)throws Exception{
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
         messageHelper.setTo(mailInfo.getTo());//收件人
@@ -71,8 +63,7 @@ public class MailEngine {
                 messageHelper.addAttachment(attachment.getAttachmentName(),new File(attachment.getAttachmentUrl()));
             }
         }
-        Template template1 = configurer.getConfiguration().getTemplate(template);
-        String content = FreeMarkerTemplateUtils.processTemplateIntoString(template1,modelParam);
+        String content = FreemarkerUtils.freeMarkerRender(modelParam,template);
         messageHelper.setText(content,true);
         mailSender.send(mimeMessage);
     }
