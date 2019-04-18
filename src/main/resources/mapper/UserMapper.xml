@@ -13,7 +13,7 @@
     </resultMap>
 
     <sql id="allColumn" >
-        id,name,alias,phone,email,create_time,update_time
+        id,name,alias,phone,email,update_time
     </sql>
 
     <select id="allUserList" resultMap="UserDO">
