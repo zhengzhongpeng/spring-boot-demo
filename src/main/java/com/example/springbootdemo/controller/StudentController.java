@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Controller
 public class StudentController {
 
-//    @RequestMapping(name = "hello")
+    @RequestMapping(value = "hello")
     public String helloMethod(Model model){
         model.addAttribute("now", LocalDateTime.now().toString());
         return "index";
