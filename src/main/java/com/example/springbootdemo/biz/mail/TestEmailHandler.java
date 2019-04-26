@@ -19,7 +19,7 @@ public class TestEmailHandler extends EmailHandlerAdapter {
         mailInfo.setTo(new String[]{mailParam.getTo()});
         mailInfo.setSubject("JAVA邮件模板测试");
         mailInfo.setContent("Jave Mail Hello word !");
-        Map<Object,Object> model = new HashMap<>();
+        Map<String,Object> model = new HashMap<>();
         model.put("nowDate", LocalDateTime.now().toString());
         mailEngine.sendMailFreeMarker(mailInfo,"testMailTemplate.ftl",model);
     }
